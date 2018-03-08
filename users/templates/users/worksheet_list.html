@@ -1,0 +1,39 @@
+{% extends 'users/base.html' %}
+{% load staticfiles %}
+{% block content-wrapper %}
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <table class="table table-striped table-bordered" id="my_data_table">
+                <tr>
+                    <th>Sno</th>
+                    <th>Worksheet</th>
+                    <th>Questions</th>
+                </tr>
+                {% for worksheet in worksheets %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ worksheet.name }}</td>
+                        <td>
+                            {% for question in worksheet.questions.all %}
+                                <ul>
+                                    <li> Question {{ forloop.counter }}</li>
+                                    <ul>
+                                        <li>{{ question.question }}<br>
+                                            <a href="{% url 'question_view' question.id %}">
+                                                <span class="glyphicon glyphicon-pencil">Answer</span>
+                                            </a><br>
+                                        </li>
+                                    </ul>
+
+                                </ul>
+                                <br>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% empty %}
+                    <h2>Hurray! You have answered all our questions</h2>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

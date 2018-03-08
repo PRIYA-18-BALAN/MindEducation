@@ -1,0 +1,19 @@
+{% extends 'users/base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block content-wrapper %}
+    <br>
+    <br>
+    <br>
+    <div class="panel">
+        <div class="panel-heading">
+            <center><h3>Register User</h3></center>
+        </div>
+        <div class="panel-body">
+            <div class="container-fluid">
+                {% crispy form %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
