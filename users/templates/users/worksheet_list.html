@@ -9,24 +9,24 @@
                     <th>Worksheet</th>
                     <th>Questions</th>
                 </tr>
-                {% for worksheet in worksheets %}
+                {% for worksheet in data %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
                         <td>{{ worksheet.name }}</td>
                         <td>
-                            {% for question in worksheet.questions.all %}
-                                <ul>
-                                    <li> Question {{ forloop.counter }}</li>
+                            {% for question in worksheet.questions %}
                                     <ul>
-                                        <li>{{ question.question }}<br>
-                                            <a href="{% url 'question_view' question.id %}">
-                                                <span class="glyphicon glyphicon-pencil">Answer</span>
-                                            </a><br>
-                                        </li>
-                                    </ul>
+                                        <li> Question {{ forloop.counter }}</li>
+                                        <ul>
+                                            <li>{{ question.question }}<br>
+                                                <a href="{% url 'question_view' question.id %}">
+                                                    <span class="glyphicon glyphicon-pencil">Answer</span>
+                                                </a><br>
+                                            </li>
+                                        </ul>
 
-                                </ul>
-                                <br>
+                                    </ul>
+                                    <br>
                             {% endfor %}
                         </td>
                     </tr>

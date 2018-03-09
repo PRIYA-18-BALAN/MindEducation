@@ -49,8 +49,17 @@ def profile_page(request):
 
 @login_required
 def questions_list(request):
-    worksheets = Worksheet.objects.filter(~Q(questions__answers__user=request.user))
-    return render(request, 'users/worksheet_list.html', {'worksheets': worksheets})
+    worksheets = Worksheet.objects.all()
+    data = []
+    for worksheet in worksheets:
+        dict_data = {'questions': [], 'name': worksheet.name}
+        flag = False
+        for question in worksheet.questions.filter(~Q(answers__user=request.user)):
+            flag = True
+            dict_data['questions'].append(question)
+        if flag:
+            data.append(dict_data)
+    return render(request, 'users/worksheet_list.html', {'data': data})
 
 
 @login_required
