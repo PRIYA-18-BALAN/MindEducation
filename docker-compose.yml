@@ -2,9 +2,9 @@ web:
   restart: always
   build: .
   ports:
-    - 8000:8000
+    - 80:80
   expose:
-    - 8000
+    - 80
   volumes:
     - MentalHealth_media:/usr/src/app/media/
   env_file: .env

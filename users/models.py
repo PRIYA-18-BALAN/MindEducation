@@ -10,7 +10,8 @@ class Worksheet(models.Model):
     name = models.CharField(max_length=500)
     created_by = models.ForeignKey(User)
     created_at = models.DateTimeField(auto_now_add=True)
-
+    def __str__(self):
+      return self.name
 
 class Question(models.Model):
     QUIZ = 0
@@ -21,14 +22,16 @@ class Question(models.Model):
     type = models.IntegerField(choices=TYPE_CHOICE, default=QUESTION)
     point = models.IntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
-
+    def __str__(self):
+     return self.question
 
 class Option(models.Model):
     question = models.ForeignKey(Question, related_name='choices')
     text = models.CharField(max_length=500)
     point = models.IntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
-
+    def __str__(self):
+      return self.text
 
 class Answer(models.Model):
     user = models.ForeignKey(User, related_name='answered_questions')
@@ -36,3 +39,5 @@ class Answer(models.Model):
     answer = models.TextField(null=True,blank=True)
     option = models.ForeignKey(Option, related_name='chosen_answers',null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+      return self.user+ " "+ self.question
