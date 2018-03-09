@@ -1,0 +1,25 @@
+web:
+  restart: always
+  build: .
+  ports:
+    - 8000:8000
+  expose:
+    - 8000
+  volumes:
+    - MentalHealth_media:/usr/src/app/media/
+  env_file: .env
+  links:
+    - postgres:postgres
+  command: sh '/usr/src/app/run_web.sh'
+  labels:
+    - "traefik.backend=minded"
+    - "traefik.enable=true"
+    - "traefik.frontend.rule=Host:minded"
+postgres:
+  restart: always
+  image: postgres:latest
+  env_file: .env
+  ports:
+    - "5432:5432"
+  volumes:
+    - MentalHealth_pgdata:/var/lib/postgresqql/data/
