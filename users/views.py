@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from datetime import datetime, timedelta
+
 from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.db.models import Q
+from django.db.models import Q, Sum
 from django.shortcuts import render, redirect
 
 from users.forms import LoginForm, RegistrationForm
@@ -44,7 +46,26 @@ def registration(request):
 
 @login_required
 def profile_page(request):
-    return render(request, 'users/profile.html')
+    date_wise_points = []
+    user = request.user
+    date = datetime.now() - timedelta(days=30)
+    max = 0
+    for i in range(0, 30):
+        points = user.answered_questions.filter(question__type=1, created_at__date=date.date()).aggregate(
+            Sum('question__point'))['question__point__sum']
+        if not points:
+            points = 0
+        temp = \
+            user.answered_questions.filter(question__type=2, created_at__date=date.date()).aggregate(
+                Sum('option__point'))[
+                'option__point__sum']
+        if temp:
+            points += temp
+        date_wise_points.append({'date': date.date().strftime("%d-%m-%Y"), 'points': points})
+        if max < points:
+            max = points
+        date = date + timedelta(days=1)
+    return render(request, 'users/profile.html', {'date_wise_points': date_wise_points, 'max': max})
 
 
 @login_required
@@ -54,7 +75,8 @@ def questions_list(request):
     for worksheet in worksheets:
         dict_data = {'questions': [], 'name': worksheet.name}
         flag = False
-        for question in worksheet.questions.filter(~Q(answers__user=request.user)):
+        date = datetime.now().date()
+        for question in worksheet.questions.filter(~Q(answers__created_at__date=date, answers__user=request.user)):
             flag = True
             dict_data['questions'].append(question)
         if flag:

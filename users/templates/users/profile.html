@@ -1,12 +1,14 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bootstrap Example</title>
+    <title>Mind Education System</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="{% static 'theme/js/chart.js/Chart.min.js' %}"></script>
     <style>
         /* Set black background color, white text and some padding */
         footer {
@@ -42,7 +44,8 @@
 {% endfor %}
 <div class="container text-center">
     <div class="row">
-        <div class="col-sm-3 well">
+
+        <div class="col-sm-3 well col-sm-offset-3">
             <div class="well">
                 <p><a href="#">My Profile</a></p>
                 <img src="https://www.w3schools.com/bootstrap/bird.jpg" class="img-circle" height="65" width="65"
@@ -61,16 +64,34 @@
             </div>
 
         </div>
-        <div class="col-sm-7">
-
+        <div class="col-sm-4">
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                            <h3>Click Here to Start Answering the questions</h3>
+                            <a href="{% url 'questions_list' %}" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-thumbs-up"></span> View Questions </a>
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+        <div class="col-sm-12">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="panel panel-default text-left">
                         <div class="panel-body">
-                            <p contenteditable="true">Status: Feeling Blue</p>
-                            <a href="{% url 'questions_list' %}" class="btn btn-default btn-sm">
-                                <span class="glyphicon glyphicon-thumbs-up"></span> View Questions </a>
-
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <i class="fa fa-area-chart"></i> Emotional Quotient Chart
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="salesChart" width="100%" height="30"></canvas>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
                         </div>
                     </div>
                 </div>
@@ -79,6 +100,69 @@
 
     </div>
 </div>
+
+<script>
+    Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+    Chart.defaults.global.defaultFontColor = '#292b2c';
+    var ctx = document.getElementById("salesChart");
+    data = [];
+    labels = [];
+    {% for date in date_wise_points %}
+        labels.push("{{ date.date }}");
+        data.push({{ date.points }});
+    {% endfor %}
+
+
+    var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Points",
+                lineTension: 0.3,
+                backgroundColor: "rgba(2,117,216,0.2)",
+                borderColor: "rgba(2,117,216,1)",
+                pointRadius: 5,
+                pointBackgroundColor: "rgba(2,117,216,1)",
+                pointBorderColor: "rgba(255,255,255,0.8)",
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(2,117,216,1)",
+                pointHitRadius: 20,
+                pointBorderWidth: 2,
+                data: data,
+            }],
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    time: {
+                        unit: 'date'
+                    },
+                    gridLines: {
+                        display: false
+                    },
+                    ticks: {
+                        maxTicksLimit: 7
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        max: {{ max }},
+                        maxTicksLimit: 5
+                    },
+                    gridLines: {
+                        color: "rgba(0, 0, 0, .125)",
+                    }
+                }],
+            },
+            legend: {
+                display: false
+            }
+        }
+    });
+</script>
+
 
 <footer class="container-fluid text-center">
     <p>@ Copyright Srinath</p>
