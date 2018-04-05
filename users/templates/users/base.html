@@ -207,27 +207,27 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="https://www.w3schools.com/bootstrap/la.jpg" alt="New York" width="1200" height="700">
-        <div class="carousel-caption">
-          <h3>New York</h3>
-          <p>The atmosphere in New York is lorem ipsum.</p>
-        </div>
+        <img src="{% static 'theme/img/first_slider.jpg' %}" alt="New York" width="1200" height="700">
+{#        <div class="carousel-caption">#}
+{#          <h3>New York</h3>#}
+{#          <p>The atmosphere in New York is lorem ipsum.</p>#}
+{#        </div>#}
       </div>
 
       <div class="item">
-        <img src="https://www.w3schools.com/bootstrap/chicago.jpg" alt="Chicago" width="1200" height="700">
-        <div class="carousel-caption">
-          <h3>Chicago</h3>
-          <p>Thank you, Chicago - A night we won't forget.</p>
-        </div>
+        <img src="{% static 'theme/img/second_slider.jpg' %}" alt="Chicago" width="1200" height="700">
+{#        <div class="carousel-caption">#}
+{#          <h3>Chicago</h3>#}
+{#          <p>Thank you, Chicago - A night we won't forget.</p>#}
+{#        </div>#}
       </div>
 
       <div class="item">
-        <img src="https://www.w3schools.com/bootstrap/ny.jpg" alt="Los Angeles" width="1200" height="700">
-        <div class="carousel-caption">
-          <h3>LA</h3>
-          <p>Even though the traffic was a mess, we had the best time playing at Venice Beach!</p>
-        </div>
+        <img src="{% static 'theme/img/third_slider.jpg' %}" alt="Los Angeles" width="1200" height="700">
+{#        <div class="carousel-caption">#}
+{#          <h3>LA</h3>#}
+{#          <p>Even though the traffic was a mess, we had the best time playing at Venice Beach!</p>#}
+{#        </div>#}
       </div>
     </div>
 
@@ -244,42 +244,64 @@
 
 <!-- Container (The Band Section) -->
 <div id="band" class="container text-center">
-  <h3>THE BAND</h3>
-  <p><em>We love music!</em></p>
-  <p>We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  <h3>ACME</h3>
+  <p><em>The point of perfection, success</em></p>
+  <p>You have not only a profound understanding of human nature,but also you have the know - how to transform it. You are perfect master. How is it that western and eastren psychologist are not recognising you ? ASK YOURSELF !!! Religions have been behaving with people and science in a crude ,primitive ,superstitious , illogical ,violent way. And because of science went on succeeding inspite the opposition of the religion , the religion lost their credit , presitge and science became the rightfull search for the truth. And in such an atmosphere , PYSCHOLOGY was born!!!! </p>
   <br>
   <div class="row">
     <div class="col-sm-4">
-      <p class="text-center"><strong>Name</strong></p><br>
+      <p class="text-center"><strong>Srinath</strong></p><br>
       <a href="#demo" data-toggle="collapse">
-        <img src="https://www.w3schools.com/bootstrap/bandmember.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
+        <img src="{% static 'theme/img/srinath.png' %}" class="img-circle person" alt="Random Name" width="255" height="255">
       </a>
       <div id="demo" class="collapse">
-        <p>Guitarist and Lead Vocalist</p>
-        <p>Loves long walks on the beach</p>
-        <p>Member since 1988</p>
+        <p>Developer</p>
+        <p>Coding is everything</p>
+        <p>Member since 2018</p>
       </div>
     </div>
     <div class="col-sm-4">
-      <p class="text-center"><strong>Name</strong></p><br>
+      <p class="text-center"><strong>PD</strong></p><br>
+      <a href="#demo" data-toggle="collapse">
+        <img src="{% static 'theme/img/priya.png' %}" class="img-circle person" alt="Random Name" width="255" height="255">
+      </a>
+      <div id="demo" class="collapse">
+        <p>Researcher</p>
+        <p>Laugh Live Love</p>
+        <p>Member since 2018</p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <p class="text-center"><strong>Sherlie</strong></p><br>
+      <a href="#demo" data-toggle="collapse">
+        <img src="{% static 'theme/img/sherlie.png' %}" class="img-circle person" alt="Random Name" width="255" height="255">
+      </a>
+      <div id="demo" class="collapse">
+        <p>Content Writing</p>
+        <p>Love people around you</p>
+        <p>Member since 2018</p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <p class="text-center"><strong>Prrithivi</strong></p><br>
       <a href="#demo2" data-toggle="collapse">
-        <img src="https://www.w3schools.com/bootstrap/bandmember.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
+        <img src="{% static 'theme/img/prithvi.png' %}" class="img-circle person" alt="Random Name" width="255" height="255">
       </a>
       <div id="demo2" class="collapse">
-        <p>Drummer</p>
-        <p>Loves drummin'</p>
-        <p>Member since 1988</p>
+        <p>Designer</p>
+        <p>Stay Crazy</p>
+        <p>Member since 2018</p>
       </div>
     </div>
     <div class="col-sm-4">
-      <p class="text-center"><strong>Name</strong></p><br>
+      <p class="text-center"><strong>Varnessha</strong></p><br>
       <a href="#demo3" data-toggle="collapse">
-        <img src="https://www.w3schools.com/bootstrap/bandmember.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
+        <img src="{% static 'theme/img/varnisha.png' %}" class="img-circle person" alt="Random Name" width="255" height="255">
       </a>
       <div id="demo3" class="collapse">
-        <p>Bass player</p>
-        <p>Loves math</p>
-        <p>Member since 2005</p>
+        <p>Analyser</p>
+        <p>Feel the good always</p>
+        <p>Member since 2018</p>
       </div>
     </div>
   </div>
@@ -288,37 +310,37 @@
 <!-- Container (TOUR Section) -->
 <div id="tour" class="bg-1">
   <div class="container">
-    <h3 class="text-center">TOUR DATES</h3>
-    <p class="text-center">Lorem ipsum we'll play you some music.<br> Remember to book your tickets!</p>
+    <h3 class="text-center">Going Live</h3>
+    <p class="text-center">Mark the dates.<br> Going Live with these personality</p>
     <ul class="list-group">
-      <li class="list-group-item">September <span class="label label-danger">Sold Out!</span></li>
-      <li class="list-group-item">October <span class="label label-danger">Sold Out!</span></li>
-      <li class="list-group-item">November <span class="badge">3</span></li>
+      <li class="list-group-item">September <span class="label label-danger"> @8.00 pm</span></li>
+      <li class="list-group-item">October <span class="label label-danger">@7.30 pm</span></li>
+      <li class="list-group-item">November <span class="badge">@6.00 pm</span></li>
     </ul>
 
     <div class="row text-center">
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img src="https://www.w3schools.com/bootstrap/paris.jpg" alt="Paris" width="400" height="300">
-          <p><strong>Paris</strong></p>
-          <p>Friday 27 November 2015</p>
-          <button class="btn" data-toggle="modal" data-target="#myModal">Buy Tickets</button>
+            <img src="{% static 'theme/img/jamison.jpg' %}" alt="Paris" width="400" height="300">
+          <p><strong>Kay Redfield Jamison</strong></p>
+          <p>Sataurday 12 November 2018</p>
+          <a href="https://google.com" class="btn btn-primary">Bio</a>
         </div>
       </div>
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img src="https://www.w3schools.com/bootstrap/newyork.jpg" alt="New York" width="400" height="300">
-          <p><strong>New York</strong></p>
+          <img src="{% static 'theme/img/harish_sundar.jpg' %}" alt="New York" width="400" height="300">
+          <p><strong>Harish Sunder</strong></p>
           <p>Saturday 28 November 2015</p>
-          <button class="btn" data-toggle="modal" data-target="#myModal">Buy Tickets</button>
+          <button class="btn" data-toggle="modal" data-target="#myModal">My World</button>
         </div>
       </div>
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img src="https://www.w3schools.com/bootstrap/sanfran.jpg" alt="San Francisco" width="400" height="300">
-          <p><strong>San Francisco</strong></p>
+          <img src="{% static 'theme/img/amit_abraham.jpg' %}" alt="San Francisco" width="400" height="300">
+          <p><strong>Amitt Abraham</strong></p>
           <p>Sunday 29 November 2015</p>
-          <button class="btn" data-toggle="modal" data-target="#myModal">Buy Tickets</button>
+          <button class="btn" data-toggle="modal" data-target="#myModal">My Space</button>
         </div>
       </div>
     </div>
@@ -327,35 +349,6 @@
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">×</button>
-          <h4><span class="glyphicon glyphicon-lock"></span> Tickets</h4>
-        </div>
-        <div class="modal-body">
-          <form role="form">
-            <div class="form-group">
-              <label for="psw"><span class="glyphicon glyphicon-shopping-cart"></span> Tickets, $23 per person</label>
-              <input type="number" class="form-control" id="psw" placeholder="How many?">
-            </div>
-            <div class="form-group">
-              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Send To</label>
-              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
-            </div>
-              <button type="submit" class="btn btn-block">Pay
-                <span class="glyphicon glyphicon-ok"></span>
-              </button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
-            <span class="glyphicon glyphicon-remove"></span> Cancel
-          </button>
-          <p>Need <a href="#">help?</a></p>
-        </div>
-      </div>
     </div>
   </div>
 </div>
@@ -368,9 +361,9 @@
   <div class="row">
     <div class="col-md-4">
       <p>Fan? Drop a note.</p>
-      <p><span class="glyphicon glyphicon-map-marker"></span>Chicago, US</p>
-      <p><span class="glyphicon glyphicon-phone"></span>Phone: +00 1515151515</p>
-      <p><span class="glyphicon glyphicon-envelope"></span>Email: mail@mail.com</p>
+      <p><span class="glyphicon glyphicon-map-marker"></span>KCT, India</p>
+      <p><span class="glyphicon glyphicon-phone"></span>Phone: +91 9876543210</p>
+      <p><span class="glyphicon glyphicon-envelope"></span>Email: contactus@gmail.com</p>
     </div>
     <div class="col-md-8">
       <div class="row">
@@ -393,23 +386,23 @@
   <br>
   <h3 class="text-center">From The Blog</h3>
   <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">Mike</a></li>
-    <li><a data-toggle="tab" href="#menu1">Chandler</a></li>
-    <li><a data-toggle="tab" href="#menu2">Peter</a></li>
+    <li class="active"><a data-toggle="tab" href="#home">Srinath</a></li>
+    <li><a data-toggle="tab" href="#menu1">PD</a></li>
+    <li><a data-toggle="tab" href="#menu2">Sherlie</a></li>
   </ul>
 
   <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
-      <h2>Mike Ross, Manager</h2>
-      <p>Man, we've been on the road for some time now. Looking forward to lorem ipsum.</p>
+      <h2>Srinath</h2>
+      <p>"The way to develop self-confidence is to do the thing you fear and get a record of successful experiences behind you." </p>
     </div>
     <div id="menu1" class="tab-pane fade">
-      <h2>Chandler Bing, Guitarist</h2>
-      <p>Always a pleasure people! Hope you enjoyed it as much as I did. Could I BE.. any more pleased?</p>
+      <h2>PD</h2>
+      <p>"If you hear a voice within you say 'you cannot paint,' then by all means paint, and that voice will be silenced."</p>
     </div>
     <div id="menu2" class="tab-pane fade">
-      <h2>Peter Griffin, Bass player</h2>
-      <p>I mean, sometimes I enjoy the show, but other times I enjoy other things.</p>
+      <h2>Sherlie</h2>
+      <p>"Always be yourself and have faith in yourself. Do not go out and look for a successful personality and try to duplicate it."</p>
     </div>
   </div>
 </div>
