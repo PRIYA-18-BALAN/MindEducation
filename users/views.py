@@ -4,7 +4,6 @@ from __future__ import unicode_literals
 from datetime import datetime, timedelta
 
 from django.contrib import messages
-from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Q, Sum
@@ -28,7 +27,7 @@ def login_user(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             user = User.objects.get(username=username)
-            # login(request, user)
+            login(request, user)
             return redirect('profile')
     return render(request, 'users/login.html', {'form': form})
 
@@ -39,7 +38,7 @@ def registration(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            # messages.success(request, "User Registered Successfully")
+            messages.success(request, "User Registered Successfully")
             return redirect('profile')
     return render(request, 'users/registration.html', {'form': form})
 
@@ -93,6 +92,10 @@ def question_view(request, id):
             Answer.objects.create(user=request.user, question=question, option=option)
         else:
             Answer.objects.create(user=request.user, question=question, answer=request.POST.get('answer'))
-        # messages.success(request, 'Response Recorded')
+        messages.success(request, 'Response Recorded')
         return redirect('questions_list')
     return render(request, 'users/question_view.html', {'question': question})
+
+
+def user_manual(request):
+    return render(request, 'users/user_manual.html')
