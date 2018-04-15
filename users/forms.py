@@ -53,7 +53,7 @@ class RegistrationForm(forms.ModelForm):
     def is_valid(self):
         if not super(RegistrationForm, self).is_valid():
             return False
-        if self.cleaned_data['password'] != self.cleaned_data['password']:
+        if self.cleaned_data['password'] != self.cleaned_data['confirm_password']:
             self.add_error('confirm_password', 'Passwords Donot Match')
             return False
         return True

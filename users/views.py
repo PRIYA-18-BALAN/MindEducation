@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from datetime import datetime, timedelta
 
 from django.contrib import messages
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Q, Sum
@@ -39,7 +40,7 @@ def registration(request):
         if form.is_valid():
             form.save()
             messages.success(request, "User Registered Successfully")
-            return redirect('profile')
+            return redirect('login')
     return render(request, 'users/registration.html', {'form': form})
 
 
@@ -49,7 +50,7 @@ def profile_page(request):
     user = request.user
     date = datetime.now() - timedelta(days=30)
     max = 0
-    for i in range(0, 30):
+    for i in range(0, 31):
         points = user.answered_questions.filter(question__type=1, created_at__date=date.date()).aggregate(
             Sum('question__point'))['question__point__sum']
         if not points:
@@ -87,13 +88,17 @@ def questions_list(request):
 def question_view(request, id):
     question = Question.objects.get(id=id)
     if request.method == 'POST':
-        if question.type == 0:
-            option = Option.objects.get(id=request.POST.get('answer'))
-            Answer.objects.create(user=request.user, question=question, option=option)
+        answer = request.POST.get("answer")
+        if answer:
+            if question.type == 0:
+                option = Option.objects.get(id=answer)
+                Answer.objects.create(user=request.user, question=question, option=option)
+            else:
+                Answer.objects.create(user=request.user, question=question, answer=request.POST.get('answer'))
+            messages.success(request, 'Response Recorded')
+            return redirect('questions_list')
         else:
-            Answer.objects.create(user=request.user, question=question, answer=request.POST.get('answer'))
-        messages.success(request, 'Response Recorded')
-        return redirect('questions_list')
+            messages.info(request, 'Please Enter a valid Answer')
     return render(request, 'users/question_view.html', {'question': question})
 
 
