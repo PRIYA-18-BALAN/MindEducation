@@ -65,17 +65,22 @@
 
         </div>
         <div class="col-sm-4">
-                    <div class="panel panel-default text-left">
-                        <div class="panel-body">
-                            <h3>Click Here to Start Answering the questions</h3>
-                            <a href="{% url 'questions_list' %}" class="btn btn-default btn-sm">
-                                <span class="glyphicon glyphicon-thumbs-up"></span> View Questions </a>
-                            <br>
-                            <br>
-                            <br>
-                        </div>
-                    </div>
+            <div class="panel panel-default text-left">
+                <div class="panel-body">
+                    <h3>Click Here to Start Answering the questions</h3>
+                    <a href="{% url 'questions_list' %}" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-thumbs-up"></span> View Questions </a>
+                    <br>
+                    <br>
+                    <br>
                 </div>
+            </div>
+        </div>
+        {% if doc_link %}
+            <p>You seem to be depressed for too many days in a row. Might I suggest a consulting session with one of the
+                docs?
+                <a href="{{ doc_link }}" class="btn btn-primary">Click Here</a></p>
+        {% endif %}
         <div class="col-sm-12">
             <div class="row">
                 <div class="col-sm-12">

@@ -50,6 +50,8 @@ def profile_page(request):
     user = request.user
     date = datetime.now() - timedelta(days=30)
     max = 0
+    doc_link = "https://www.sriramakrishnahospital.com/doctor/ananth-s/"
+    max_count = 0
     for i in range(0, 31):
         points = user.answered_questions.filter(question__type=1, created_at__date=date.date()).aggregate(
             Sum('question__point'))['question__point__sum']
@@ -64,8 +66,12 @@ def profile_page(request):
         date_wise_points.append({'date': date.date().strftime("%d-%m-%Y"), 'points': points})
         if max < points:
             max = points
+        if points >2:
+            max_count+=1
         date = date + timedelta(days=1)
-    return render(request, 'users/profile.html', {'date_wise_points': date_wise_points, 'max': max})
+        if max_count>=5:
+            return render(request, 'users/profile.html', {'date_wise_points': date_wise_points, 'max': max,'doc_link':doc_link})
+        return render(request, 'users/profile.html', {'date_wise_points': date_wise_points, 'max': max})
 
 
 @login_required

@@ -2,7 +2,7 @@ web:
   restart: always
   build: .
   ports:
-    - 80:80
+    - 8005:80
   expose:
     - 80
   volumes:
