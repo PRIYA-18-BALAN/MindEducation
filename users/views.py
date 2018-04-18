@@ -53,12 +53,12 @@ def profile_page(request):
     doc_link = "https://www.sriramakrishnahospital.com/doctor/ananth-s/"
     max_count = 0
     for i in range(0, 31):
-        points = user.answered_questions.filter(question__type=1, created_at__date=date.date()).aggregate(
+        points = user.answered_questions.filter(question__type=0, created_at__date=date.date()).aggregate(
             Sum('question__point'))['question__point__sum']
         if not points:
             points = 0
         temp = \
-            user.answered_questions.filter(question__type=2, created_at__date=date.date()).aggregate(
+            user.answered_questions.filter(question__type=1, created_at__date=date.date()).aggregate(
                 Sum('option__point'))[
                 'option__point__sum']
         if temp:
