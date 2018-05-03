@@ -62,3 +62,4 @@ class RegistrationForm(forms.ModelForm):
         super(RegistrationForm, self).save()
         self.instance.set_password(self.instance.password)
         self.instance.save()
+        return self.instance

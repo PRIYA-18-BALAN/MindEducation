@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import random
 from datetime import datetime, timedelta
 
 from django.contrib import messages
@@ -8,10 +9,12 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Q, Sum
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
+from messageotp import send_message
 from users.forms import LoginForm, RegistrationForm
-from users.models import Question, Worksheet, Answer, Option
+from users.models import Question, Worksheet, Answer, Option, OTP
 
 
 # Create your views here.
@@ -29,8 +32,26 @@ def login_user(request):
             username = form.cleaned_data['username']
             user = User.objects.get(username=username)
             login(request, user)
-            return redirect('profile')
+            return redirect('verify_otp', user.id)
     return render(request, 'users/login.html', {'form': form})
+
+
+def verify_otp(request, user_id):
+    user = User.objects.get(id=user_id)
+    otp = OTP.objects.get(user=user)
+    if otp.verified:
+        return redirect("profile")
+    else:
+        if request.method == 'POST':
+            otp_num = request.POST.get("otp")
+            if otp.otp == int(otp_num):
+                otp.verified = True
+                otp.save()
+                messages.add_message(request, messages.SUCCESS, "OTP Verified Successfully")
+                return redirect("profile")
+            else:
+                messages.error(request, "Wrong OTP")
+        return render(request, 'users/verify_otp.html')
 
 
 def registration(request):
@@ -38,7 +59,11 @@ def registration(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            otp_num = random.randint(1000, 10000)
+            otp = OTP.objects.create(user=user, otp=otp_num)
+            send_message(
+                "OTP for Mind Education System for user " + form.cleaned_data['username'] + " is " + str(otp_num))
             messages.success(request, "User Registered Successfully")
             return redirect('login')
     return render(request, 'users/registration.html', {'form': form})
@@ -66,11 +91,12 @@ def profile_page(request):
         date_wise_points.append({'date': date.date().strftime("%d-%m-%Y"), 'points': points})
         if max < points:
             max = points
-        if points >2:
-            max_count+=1
+        if points > 2:
+            max_count += 1
         date = date + timedelta(days=1)
-        if max_count>=5:
-            return render(request, 'users/profile.html', {'date_wise_points': date_wise_points, 'max': max,'doc_link':doc_link})
+        if max_count >= 5:
+            return render(request, 'users/profile.html',
+                          {'date_wise_points': date_wise_points, 'max': max, 'doc_link': doc_link})
         return render(request, 'users/profile.html', {'date_wise_points': date_wise_points, 'max': max})
 
 
@@ -110,3 +136,10 @@ def question_view(request, id):
 
 def user_manual(request):
     return render(request, 'users/user_manual.html')
+
+
+def test(request):
+    data = request.GET.get("data", None)
+    if data:
+        return HttpResponse("Received " + str(data))
+    return HttpResponse("Success")

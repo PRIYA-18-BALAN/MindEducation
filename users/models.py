@@ -53,3 +53,11 @@ class Answer(models.Model):
 
     def __str__(self):
         return self.user + " " + self.question
+
+
+class OTP(models.Model):
+    user = models.ForeignKey(User, related_name='otp')
+    otp = models.IntegerField()
+    verified = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

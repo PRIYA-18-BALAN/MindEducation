@@ -17,12 +17,13 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth.views import logout
 
-from users.views import landing_page
+from users.views import landing_page, test
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', landing_page, name='landing_page'),
     url(r'^users/', include('users.urls')),
     url(r'^logout', logout, name='logout'),
+    url(r'^test', test),
 
 ]
