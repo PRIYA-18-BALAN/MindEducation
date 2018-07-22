@@ -1,8 +1,8 @@
 import requests
 
-api_key = '72100AqI6mYUkRhLx5563f6f2'
-sender = 'iQubee'
-mobile_number = '9597267499'
+api_key = 'kjgkjhkjhg'
+sender = 'priya'
+mobile_number = '8765875876'
 
 
 def send_message(message):
