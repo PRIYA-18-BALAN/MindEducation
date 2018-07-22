@@ -10,13 +10,6 @@ install docker from get-docker.sh script
 install docker-compose
 docker-compose build && docker-compose up -d
 
-### Contribution guidelines ###
-
-Developer: Srinath
-
-### Who do I talk to? ###
-
-Contact the developer at srinath.15cs@kct.ac.in
 
 ### User Manual ###
 
@@ -50,7 +43,7 @@ There will be links displayed on the user profile which can direct s the user  t
 
 ### Admin: ###
 
-When  they click on this link https://srinath.iqube.io/admin/  they are taken to the admin page
+When  they click on this link {{host}}/admin/  they are taken to the admin page
 
 There  authentication and authorizations can be made
 
